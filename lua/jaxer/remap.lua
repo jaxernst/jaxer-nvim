@@ -9,6 +9,7 @@ vim.api.nvim_set_keymap('n', 'vk', '4k', { noremap = true })
 vim.api.nvim_set_keymap('n', 'vh', '8h', { noremap = true })
 vim.api.nvim_set_keymap('n', 'vl', '8l', { noremap = true })
 
+vim.api.nvim_set_keymap('n', '<leader>a', 'ggVG', { noremap = true })
 
 
 

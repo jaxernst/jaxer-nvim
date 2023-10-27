@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
+  kreative = {
+    loaded = true,
+    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/kreative",
+    url = "https://github.com/katawful/kreative"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/lualine.nvim",

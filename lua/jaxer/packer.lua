@@ -26,5 +26,5 @@ return require('packer').startup(function(use)
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
 
-
+	use {'katawful/kreative', tag = '1.0'}
 end)
