@@ -1,3 +1,4 @@
+
 --
 -- Built with,
 --
@@ -44,11 +45,14 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local mainBg =  hsl(220, 10, 13)
+
+local white = hsl(0, 0, 100)
+
+local mainBg =  hsl(220, 10, 11)
 local neutral1 = hsl(47, 57, 76)
 local blue = hsl("#009dff")
 local neutralBlue = hsl("#7ccfe4")
-local yellow = hsl("#ffdd00")
+local yellow = hsl("#ffdd00").saturate(-10).lighten(10)
 local purple = hsl(310, 50, 60)
 local green = hsl(120, 90, 70)
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
@@ -68,8 +72,8 @@ local theme = lush(function(injected_functions)
     -- See :h highlight-groups
     --
     -- ColorColumn    { }, -- Columns set with 'colorcolumn'
-    -- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    -- Cursor         {  bg =  hsl(200, 90, 30) }, -- Character under the cursor
+    -- Conceal        { }, -- Pla)ceholder characters substituted for concealed text (see 'conceallevel')
+    -- Cursor         {  bg =  hsl(100, 40, 30) }, -- Character under the cursor
     -- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
@@ -102,12 +106,12 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal            { bg = mainBg, fg = neutralBlue },
+    Normal            { bg = mainBg, fg = white.darken(30) },
     NormalFloat       { Normal }, -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
-    Pmenu             { bg = "#26232a" }, -- Popup menu: Normal item.
+    Pmenu             { fg = yellow }, -- Popup menu: Normal item.
     -- PmenuSel       { }, -- Popup menu: Selected item.
     -- PmenuKind      { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -148,36 +152,36 @@ local theme = lush(function(injected_functions)
 
     Comment        { fg = hsl("#3b9e2e").saturate(-70) }, -- Any comment
     
-    Constant       { fg = blue.saturate(-50).darken(-20) }, -- (*) Any constant
-    String         { fg = yellow.rotate(-40).saturate(-60).lighten(30) }, --   A string constant: "this is a string"
+    Constant       { fg = white.darken(39) }, -- (*) Any constant
+    String         { fg = yellow.rotate(-20).saturate(-70).lighten(30) }, --   A string constant: "this is a string"
     -- Character      { }, --   A character constant: 'c', '\n'
     -- Number         { }, --   A number constant: 234, 0xff
     -- Boolean        { }, --   A boolean constant: TRUE, false
     -- Float          { }, --   A floating point constant: 2.3e10
 
-    Identifier     { fg = neutralBlue.lighten(20).saturate(-25)  }, -- (*) Any variable name
-    Function       { fg = yellow.saturate(-20).lighten(40) }, --   Function name (also: methods for classes)
+    Identifier     { fg = white.darken(20)  }, -- (*) Any variable name
+    Function       { fg = yellow }, --   Function name (also: methods for classes)
 
-    Statement      { fg = purple.saturate(-10).lighten(14) }, -- (*) Any statement
-    Conditional    { Statement }, --   if, then, else, endif, switch, etc.
-    Repeat         { Statement }, --   for, do, while, etc.
-    Label          { Statement }, --   case, default, etc.
-    Operator       { fg = blue.saturate(-40).darken(10) }, --   "sizeof", "+", "*", etc.
-    Keyword        { fg = blue.lighten(20) }, --   any other keyword
+    Statement      { fg = blue.saturate(-70).lighten(20) }, -- (*) Any statement
+    Conditional    { fg = yellow }, --   if, then, else, endif, switch, etc.
+    Repeat         { fg = yellow }, --   for, do, while, etc.
+    Label          { Statement  }, --   case, default, etc.
+    Operator       { fg = white.darken(30) }, --   "sizeof", "+", "*", etc.
+    Keyword        { Statement }, --   any other keyword
     Exception      { Statement }, --   try, catch, throw
 
-     PreProc        {  fg = purple }, -- (*) Generic Preprocessor
+     PreProc        {  fg = purple.saturate(-20).lighten(15) }, -- (*) Generic Preprocessor
     -- Include        { }, --   Preprocessor #include
     -- Define         { }, --   Preprocessor #define
     -- Macro          { }, --   Same as Define
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = blue.saturate(-40).rotate(-30) }, -- (*) int, long, char, etc.
+    Type           { fg = blue.rotate(-13).lighten(30).saturate(-85)}, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     -- Structure      { }, --   struct, union, enum, etc.
     -- Typedef        { }, --   A typedef
 
-    Special        { fg = blue.lighten(90).saturate(-50)}, -- (*) Any special symbol
+    Special        { fg = white.darken(50) }, -- (*) Any special symbol
     -- SpecialChar    { }, --   Special character in a cobnstant
     -- Tag            { Function }, --   You can use CTRL-b] on this
     -- Delimiter      { Function }, --   Character that needs attention
@@ -256,26 +260,26 @@ local theme = lush(function(injected_functions)
     -- sym"@comment"           { }, -- Comment
     -- sym"@punctuation"       { }, -- Delimiter
     -- sym"@constant"          { }, -- Constant
-     sym"@constant.builtin"  { fg = blue.saturate(-60) }, -- Special
+     sym"@constant.builtin"  { fg = blue.saturate(-80) }, -- Special
     -- sym"@constant.macro"    { }, -- Define
     -- sym"@define"            { }, -- Define
     -- sym"@macro"             { }, -- Macro
     -- sym"@string"            { }, -- String
     -- sym"@string.escape"     { }, -- SpecialChar
-    sym"@string.special"    { fg = blue }, -- SpecialChar
+    sym"@string.special"    { fg = blue.saturate(-80) }, -- SpecialChar
     -- sym"@character"         { }, -- Character
     -- sym"@character.special" { }, -- SpecialChar
     -- sym"@number"            { }, -- Number
     -- sym"@boolean"           { }, -- Boolean
     -- sym"@float"             { }, -- Float
     -- sym"@function"          { }, -- Function
-    -- sym"@function.builtin"  { }, -- Special
+    sym"@function.builtin"  { fg = yellow.lighten(25) }, -- Special
     -- sym"@function.macro"    { }, -- Macro
     -- sym"@parameter"         { }, -- Identifier
     -- sym"@method"            { }, -- Function
     -- sym"@field"             { }, -- Identifier
     -- sym"@property"          { }, -- Identifier
-    -- sym"@constructor"       { }, -- Special
+    sym"@constructor"       { fg = blue.saturate(-80) }, -- Special
     -- sym"@conditional"       { }, -- Conditional
     -- sym"@repeat"            { }, -- Repeat
     -- sym"@label"             { }, -- Label
@@ -291,7 +295,7 @@ local theme = lush(function(injected_functions)
     -- sym"@include"           { }, -- Include
     -- sym"@preproc"           { }, -- PreProc
     -- sym"@debug"             { }, -- Debug
-    -- sym"@tag"               { }, -- Tag
+    sym"@tag"               { fg = white.darken(20) }, -- Tag
 }
 end)
 

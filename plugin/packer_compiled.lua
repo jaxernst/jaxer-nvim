@@ -105,6 +105,11 @@ _G.packer_plugins = {
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
+  ["oxocarbon.nvim"] = {
+    loaded = true,
+    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
+    url = "https://github.com/nyoom-engineering/oxocarbon.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/packer.nvim",
