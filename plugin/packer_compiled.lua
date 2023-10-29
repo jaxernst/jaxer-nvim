@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  fd = {
+    loaded = true,
+    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/fd",
+    url = "https://github.com/sharkdp/fd"
+  },
   harpoon = {
     loaded = true,
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -104,11 +109,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
-  },
-  ["oxocarbon.nvim"] = {
-    loaded = true,
-    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
-    url = "https://github.com/nyoom-engineering/oxocarbon.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
