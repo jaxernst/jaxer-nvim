@@ -45,16 +45,34 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+vim.api.nvim_set_keymap('n', '<leader>w', ':wincmd w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', ' sa', 'ggVG', { noremap = true })
+
+-- Normal mode mapping to yank to system clipboard
+vim.api.nvim_set_keymap('n', '<Leader>y', '"+y', { noremap = true, silent = true })
+
+-- Visual mode mapping to yank selected text to system clipboard
+vim.api.nvim_set_keymap('v', '<Leader>y', '"+y', { noremap = true, silent = true })
+
+
 
 local white = hsl(0, 0, 100)
 
-local mainBg =  hsl(220, 10, 11)
+local mainBg =  hsl(220, 10, 13)
 local neutral1 = hsl(47, 57, 76)
 local blue = hsl("#009dff")
 local neutralBlue = hsl("#7ccfe4")
-local yellow = hsl("#ffdd00").saturate(-10).lighten(10)
+local yellow = hsl("#ffdd00").saturate(-14).lighten(10)
 local purple = hsl(310, 50, 60)
 local green = hsl(120, 90, 70)
+
+local StringColor = yellow.rotate(-20).saturate(-70).lighten(30)
+
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global 
@@ -91,12 +109,12 @@ local theme = lush(function(injected_functions)
     -- VertSplit      { }, -- Column separating vertically split windows
     -- Folded         { }, -- Line used for closed folds
     -- FoldColumn     { }, -- 'foldcolumn'
-    -- SignColumn     { }, -- Column where |signs| are displayed
+    SignColumn     { fg = purple.saturate(20)  }, -- Column where |signs| are displayed
     -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute     { }, -- |:substitute| replacement text highlighting
-    -- LineNr         { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
-    -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
+    LineNr         { fg = yellow }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    LineNrAbove    { fg = white.darken(60)}, -- Line number for when the 'relativenumber' option is set, above the cursor line
+    LineNrBelow    { fg = white.darken(60) }, -- Line number for when the 'relativenumber' option is set, below the cursor line
     -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
@@ -111,7 +129,7 @@ local theme = lush(function(injected_functions)
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
-    Pmenu             { fg = yellow }, -- Popup menu: Normal item.
+    Pmenu             { fg = neutralBlue, bg = white.darken(83) }, -- Popup menu: Normal item.
     -- PmenuSel       { }, -- Popup menu: Selected item.
     -- PmenuKind      { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -129,6 +147,7 @@ local theme = lush(function(injected_functions)
     -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
     -- StatusLine     { }, -- Status line of current window
     -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+-- Equivalent to the given autocmds
     -- TabLine        { }, -- Tab pages line, not active tab page label
     -- TabLineFill    { }, -- Tab pages line, where there are no labels
     -- TabLineSel     { }, -- Tab pages line, active tab page label
@@ -152,8 +171,8 @@ local theme = lush(function(injected_functions)
 
     Comment        { fg = hsl("#3b9e2e").saturate(-70) }, -- Any comment
     
-    Constant       { fg = white.darken(39) }, -- (*) Any constant
-    String         { fg = yellow.rotate(-20).saturate(-70).lighten(30) }, --   A string constant: "this is a string"
+    Constant       { fg = white.darken(30) }, -- (*) Any constant
+    String         { fg = StringColor }, --   A string constant: "this is a string"
     -- Character      { }, --   A character constant: 'c', '\n'
     -- Number         { }, --   A number constant: 234, 0xff
     -- Boolean        { }, --   A boolean constant: TRUE, false
@@ -176,7 +195,7 @@ local theme = lush(function(injected_functions)
     -- Macro          { }, --   Same as Define
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = blue.rotate(-13).lighten(30).saturate(-85)}, -- (*) int, long, char, etc.
+    Type           { fg = blue.rotate(-50).lighten(30).saturate(-80)}, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     -- Structure      { }, --   struct, union, enum, etc.
     -- Typedef        { }, --   A typedef
@@ -279,7 +298,7 @@ local theme = lush(function(injected_functions)
     -- sym"@method"            { }, -- Function
     -- sym"@field"             { }, -- Identifier
     -- sym"@property"          { }, -- Identifier
-    sym"@constructor"       { fg = blue.saturate(-80) }, -- Special
+    sym"@constructor"       { fg = blue.saturate(-60) }, -- Special
     -- sym"@conditional"       { }, -- Conditional
     -- sym"@repeat"            { }, -- Repeat
     -- sym"@label"             { }, -- Label
@@ -291,7 +310,7 @@ local theme = lush(function(injected_functions)
     -- sym"@type.definition"   { }, -- Typedef
     -- sym"@storageclass"      { }, -- StorageClass
     -- sym"@structure"         { }, -- Structure
-    -- sym"@namespace"         { }, -- Identifier
+    sym"@namespace"         { fg = yellow }, -- Identifier
     -- sym"@include"           { }, -- Include
     -- sym"@preproc"           { }, -- PreProc
     -- sym"@debug"             { }, -- Debug
