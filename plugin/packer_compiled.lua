@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/fd",
     url = "https://github.com/sharkdp/fd"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -140,8 +145,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/jacksonernst/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["oil.nvim"] = {
