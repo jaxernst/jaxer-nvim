@@ -54,4 +54,11 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	}
+
+	use "nvim-tree/nvim-web-devicons"
+
+	use {
+		'stevearc/oil.nvim',
+		config = function() require('oil').setup() end
+	}
 end)
