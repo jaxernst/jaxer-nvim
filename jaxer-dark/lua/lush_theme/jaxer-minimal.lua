@@ -45,22 +45,6 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
-vim.api.nvim_set_keymap('n', '<leader>w', ':wincmd w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', ' sa', 'ggVG', { noremap = true })
-
--- Normal mode mapping to yank to system clipboard
-vim.api.nvim_set_keymap('n', '<Leader>y', '"+y', { noremap = true, silent = true })
-
--- Visual mode mapping to yank selected text to system clipboard
-vim.api.nvim_set_keymap('v', '<Leader>y', '"+y', { noremap = true, silent = true })
-
-
-
 local white = hsl(0, 0, 100)
 
 local mainBg =  hsl(220, 10, 13)
@@ -124,8 +108,8 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal            { bg = mainBg, fg = white.darken(30) },
-    NormalFloat       { Normal }, -- Normal text in floating windows.
+    Normal            { bg = mainBg, fg = white.darken(30)  },
+    NormalFloat       { bg = mainBg.darken(28), fg = white.darken(30)  }, -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
