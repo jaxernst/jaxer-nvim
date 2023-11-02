@@ -21,3 +21,13 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
 
+-- Set window width
+vim.api.nvim_set_keymap('n', '<leader>wh', ':<C-U>resize <C-R>=v:count1<CR><CR>', { noremap = true, silent = true })
+
+-- Set window height
+vim.api.nvim_set_keymap('n', '<leader>ww', ':<C-U>vertical resize <C-R>=v:count1<CR><CR>', { noremap = true, silent = true })
+
+
+
+
+
