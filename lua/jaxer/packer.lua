@@ -27,7 +27,7 @@ return require("packer").startup(function(use)
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
 
-  use("rktjmp/lush.nvim")
+  use ("rktjmp/lush.nvim")
 
   use("rebelot/kanagawa.nvim")
 
