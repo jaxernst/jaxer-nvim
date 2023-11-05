@@ -81,7 +81,7 @@ local theme = lush(function(injected_functions)
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
 		-- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		-- CursorLine     { }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-		-- Directory      { }, -- Directory names (and other special names in listings)
+		Directory({ fg = neutralBlue }), -- Directory names (and other special names in listings)
 		-- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
 		-- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
 		-- DiffDelete     { }, -- Diff mode: Deleted line |diff.txt|
@@ -120,7 +120,7 @@ local theme = lush(function(injected_functions)
 		-- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
 		-- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
 		-- PmenuSbar      { }, -- Popup menu: Scrollbar.
-		-- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
+		PmenuThumb({}), -- Popup menu: Thumb of the scrollbar.
 		-- Question       { }, -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		-- Search         { }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
@@ -132,9 +132,9 @@ local theme = lush(function(injected_functions)
 		-- StatusLine     { }, -- Status line of current window
 		-- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		-- Equivalent to the given autocmds
-		-- TabLine        { }, -- Tab pages line, not active tab page label
-		-- TabLineFill    { }, -- Tab pages line, where there are no labels
-		-- TabLineSel     { }, -- Tab pages line, active tab page label
+		TabLine({ fg = white.darken(40) }), -- Tab pages line, not active tab page label
+		TabLineFill({}), -- Tab pages line, where there are no labels
+		TabLineSel({ fg = neutralBlue }), -- Tab pages line, active tab page label
 		-- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
 		-- Visual         { }, -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
@@ -298,7 +298,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@include"           { }, -- Include
 		-- sym"@preproc"           { }, -- PreProc
 		-- sym"@debug"             { }, -- Debug
-		sym("@tag")({ fg = white.darken(20) }), -- Tag
+		sym("@tag")({ fg = neutralBlue.darken(20).saturate(-60) }), -- Tag
 	}
 end)
 
