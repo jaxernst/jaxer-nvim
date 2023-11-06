@@ -2,7 +2,7 @@ require("jaxer.remap")
 require("jaxer.packer")
 
 vim.cmd("set relativenumber")
-vim.cmd("colorscheme kanagawa-wave")
+vim.cmd("colorscheme nordic")
 
 vim.wo.number = true
 
@@ -17,7 +17,6 @@ vim.api.nvim_exec(
 ]],
 	false
 )
-
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
